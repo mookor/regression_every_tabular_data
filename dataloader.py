@@ -2,11 +2,12 @@
 Dataloader class for a "Regression with a Flood Prediction Dataset" 
 https://www.kaggle.com/competitions/playground-series-s4e5
 """
+
 import pandas as pd
 
 
 class DataLoader:
-    def __init__(self, train_path, test_path, sample_submission_path = None):
+    def __init__(self, train_path, test_path, sample_submission_path=None):
         self.train_path = train_path
         self.test_path = test_path
         self.sample_submission_path = sample_submission_path
