@@ -26,7 +26,7 @@ class Lossguide_catboost_model(Base_catboost_model):
         )
 
         params = {
-            "task_type": "GPU",
+            "task_type": "CPU",
             "devices": "0",
             "iterations": trial.suggest_int("iterations", 50, 1500),
             "learning_rate": trial.suggest_float("learning_rate", 1e-3, 0.3, log=True),
