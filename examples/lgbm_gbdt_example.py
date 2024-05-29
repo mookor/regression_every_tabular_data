@@ -10,13 +10,16 @@ y = pd.Series([0.1, 0.2, 0.3, 0.4, 0.5] * 100)
 
 # define model
 model_name = "X*0.1_model"  # it will be saved in models folder by path './models/{model_name}.joblib'
+
 model = GBDT_lgbm_model(X, y, model_name=model_name)  # model, with gbdt boosting type
 model.optimize(10)  # 10 trials
 
 optimized_model_params = load(
     f"models/{model_name}.joblib"
 )  # load optimized model parameters
+
 optimized_model_params["verbose"] = -1  # turn off verbose
+
 optimized_model = LGBMRegressor(
     **optimized_model_params
 )  # define model with optimized parameters
