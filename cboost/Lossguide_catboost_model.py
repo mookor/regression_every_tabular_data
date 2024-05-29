@@ -5,7 +5,17 @@ import numpy as np
 
 class Lossguide_catboost_model(Base_catboost_model):
     def __init__(self, X, y, model_name="lossguide_catboost_model"):
-        super().__init__(X, y, model_name)
+        super().__init__(
+            X,
+            y,
+            base_params={
+                "random_seed": 42,
+                "eval_metric": "R2",
+                "boosting_type": "Plain",
+                "grow_policy": "Lossguide",
+            },
+            model_name=model_name,
+        )
 
     def objective(self, trial):
         boosting_type = "Plain"
@@ -42,7 +52,7 @@ class Lossguide_catboost_model(Base_catboost_model):
             "bootstrap_type": trial.suggest_categorical(
                 "bootstrap_type", ["Bayesian", "Bernoulli", "No", "MVS"]
             ),
-            "eval_metric": "R2",
+            "eval_metric": "RMSE",
             "thread_count": -1,
         }
 

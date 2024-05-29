@@ -5,7 +5,16 @@ import numpy as np
 
 class SymmetricTree_catboost_model(Base_catboost_model):
     def __init__(self, X, y, model_name="symmetric_tree_catboost_model"):
-        super().__init__(X, y, model_name)
+        super().__init__(
+            X,
+            y,
+            base_params={
+                "random_seed": 42,
+                "eval_metric": "R2",
+                "grow_policy": "SymmetricTree",
+            },
+            model_name=model_name,
+        )
 
     def objective(self, trial):
         boosting_type = trial.suggest_categorical("boosting_type", ["Ordered", "Plain"])
