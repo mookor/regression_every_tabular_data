@@ -11,10 +11,11 @@ import os
 
 
 class Base_lgbm_model(ABC):
-    def __init__(self, X, y, model_name="base_lgbm_model"):
+    def __init__(self, X, y, base_params={}, model_name="base_lgbm_model"):
         self.X = X
         self.y = y
         self.model_name = model_name
+        self.base_params = base_params
 
     def r2_metric(self, y_true, y_pred):
         y_true = y_true.reshape(-1, 1)
@@ -71,5 +72,8 @@ class Base_lgbm_model(ABC):
         if not os.path.exists("models"):
             os.mkdir("models")
 
-        dump(study, f"models/{self.model_name}.joblib")
+        params_dict = trial.params
+        params_dict.update(self.base_params)
+
+        dump(params_dict, f"models/{self.model_name}.joblib")
         return study.best_params

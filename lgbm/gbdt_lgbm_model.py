@@ -3,8 +3,14 @@ import numpy as np
 
 
 class GBDT_lgbm_model(Base_lgbm_model):
-    def __init__(self, X, y, model_name="gbdt_lgbm_model"):
-        super().__init__(X, y, model_name)
+    def __init__(
+        self,
+        X,
+        y,
+        base_params={"random_seed": 42, "eval_metric": "rmse", "boosting_type": "gbdt"},
+        model_name="gbdt_lgbm_model",
+    ):
+        super().__init__(X, y, base_params, model_name)
 
     def objective(self, trial):
         params = {
