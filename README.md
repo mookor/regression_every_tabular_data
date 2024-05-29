@@ -7,6 +7,11 @@
 | Regression    |     lightGBM  |           gbdt| :white_check_mark: | 
 | Regression    |     lightGBM  |           goss| :white_check_mark: |
 | Regression    |     lightGBM  |             rf| :white_check_mark: |
+| Regression    |     Catboost  |      Depthwise| :white_check_mark: |
+| Regression    |     Catboost  |      Lossguide| :white_check_mark: |
+| Regression    |     Catboost  |  SymmetricTree| :white_check_mark: |
+| Classification   |     -  |  - | :negative_squared_cross_mark:  - now in work|
+
 
 ## Example
 
